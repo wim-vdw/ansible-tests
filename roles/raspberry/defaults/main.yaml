@@ -1,3 +1,7 @@
 nordvpn_deb_package: https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
 home_subnet: 192.168.0.0/24
-ssh_port: 22
+allowed_ports:
+  - 22
+  - 80
+  - 443
+  - 1234
