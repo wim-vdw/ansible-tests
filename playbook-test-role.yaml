@@ -1,0 +1,8 @@
+---
+- name: Test roles
+  hosts: "{{ var_hosts }}"
+
+  roles:
+    - role: common
+    - role: raspberry
+      when: ansible_facts['os_family'] == 'Debian'

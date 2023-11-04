@@ -1,0 +1,24 @@
+- name: NordVPN - Install GPG key and APT repo
+  become: true
+  ansible.builtin.apt:
+    deb: "{{ nordvpn_deb_package }}"
+    state: present
+
+- name: NordVPN - Install
+  become: true
+  ansible.builtin.apt:
+    name: nordvpn
+    state: present
+
+- name: NordVPN - Add user wim to group nordvpn
+  become: true
+  ansible.builtin.user:
+    name: wim
+    groups: nordvpn
+    append: yes
+
+- name: NordVPN - Add a rule to allow port {{ ssh_port }}
+  ansible.builtin.command: nordvpn whitelist add port {{ ssh_port }}
+
+- name: NordVPN - Add a rule to allow subnet {{ home_subnet }}
+  ansible.builtin.command: nordvpn whitelist add subnet {{ home_subnet }}

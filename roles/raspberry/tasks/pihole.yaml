@@ -1,0 +1,18 @@
+- name: Pi-hole - Upgrade
+  ansible.builtin.command: pihole -up
+  register: pihole
+
+- name: Pi-hole - Update configuration
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/lighttpd/lighttpd.conf
+    regexp: '^server.port'
+    line: 'server.port                 = 1234'
+  register: pihole
+
+- name: Pihole - Restart service only when config has changed
+  become: true
+  ansible.builtin.service:
+    name: lighttpd
+    state: restarted
+  when: pihole.changed

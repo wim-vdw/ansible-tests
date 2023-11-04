@@ -1,0 +1,5 @@
+- name: Pi-hole tasks
+  import_tasks: pihole.yaml
+
+- name: NordVPN tasks
+  import_tasks: nordvpn.yaml

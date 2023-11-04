@@ -1,0 +1,14 @@
+- name: Ping test
+  ansible.builtin.ping:
+
+- name: Get OS uptime
+  ansible.builtin.shell: uptime
+  register: result
+
+- name: Display OS data
+  ansible.builtin.debug:
+    msg:
+      - "Start: {{ result.start }}"
+      - "End: {{ result.end }}"
+      - "{{ result.cmd }}"
+      - "{{ result.stdout }}"

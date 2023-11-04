@@ -1,0 +1,31 @@
+---
+- name: Get Azure data
+  hosts: localhost
+  connection: local
+  collections:
+    - azure.azcollection
+
+  tasks:
+    - block:
+        - include_tasks: includes/general.yaml
+        - include_tasks: includes/azure.yaml
+      rescue:
+        - name: Rescued, will continue with next Play
+          ansible.builtin.debug:
+            msg: "Rescued, will continue with next Play"
+
+- name: Get local data from Mac
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - include_tasks: includes/general.yaml
+
+- name: Update raspberry
+  hosts: raspberry
+  gather_facts: yes
+
+  tasks:
+    - block:
+        - include_tasks: includes/general.yaml
+        - include_tasks: includes/raspberry.yaml

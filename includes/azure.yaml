@@ -1,0 +1,28 @@
+- name: Get facts for one resource group
+  azure_rm_resourcegroup_info:
+    name: rg-test05
+    list_resources: no
+  register: rg
+
+- name: Display resource group info
+  ansible.builtin.debug:
+    var: rg.resourcegroups[0].id
+  when: rg.resourcegroups[0] is defined
+
+- name: Get info for all resource groups
+  azure_rm_resourcegroup_info:
+    list_resources: no
+  register: rg
+
+- name: Echo resource groups
+  ansible.builtin.shell: |
+    {% for group in rg.resourcegroups %}
+      echo "{{ group.name }} => Managed by: {{ group['tags']['managed-by'] | default('None') }}"
+    {% endfor %}
+  when: rg.resourcegroups[0] is defined
+  register: result
+
+- name: Display resource group results
+  ansible.builtin.debug:
+    var: result.stdout_lines
+  when: result.stdout_lines is defined

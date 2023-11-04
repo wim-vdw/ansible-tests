@@ -1,0 +1,25 @@
+- name: Copy playbook file
+  ansible.builtin.copy:
+    src: ./playbook-test-blocks-and-includes.yaml
+    dest: /home/wim/inventory.yaml
+  become: true
+
+- name: Display Python version
+  ansible.builtin.debug:
+    var: ansible_facts['python_version']
+
+- name: Get system information
+  ansible.builtin.shell: uname -a
+  register: system_info
+
+- name: Save result to a file
+  ansible.builtin.copy:
+    content: |
+      System information: {{ system_info.stdout }}
+      Python version: {{ ansible_facts['python_version'] }}
+    dest: "/home/wim/system_info.txt"
+  register: result
+
+- name: Debug file
+  ansible.builtin.debug:
+    var: result
