@@ -17,7 +17,7 @@
     groups: nordvpn
     append: yes
 
-- name: NordVPN - Add a rule to allow ports
+- name: NordVPN - Add rules to allow ports
   ansible.builtin.command: nordvpn whitelist add port {{ item }}
   loop: "{{ allowed_ports }}"
 
