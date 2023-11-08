@@ -6,3 +6,5 @@
     - role: common
     - role: raspberry
       when: ansible_facts['os_family'] == 'Debian'
+    - role: mac
+      when: ansible_facts['os_family'] == 'Darwin'
