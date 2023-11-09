@@ -1,6 +1,7 @@
 - name: Pi-hole - Upgrade
   ansible.builtin.command: pihole -up
-  register: pihole
+  register: pihole_upgrade
+  changed_when: "'Everything is up to date!' not in pihole_upgrade.stdout"
 
 - name: Pi-hole - Update configuration
   become: true
@@ -8,11 +9,11 @@
     path: /etc/lighttpd/lighttpd.conf
     regexp: '^server.port'
     line: 'server.port                 = 1234'
-  register: pihole
+  register: pihole_conf
 
 - name: Pihole - Restart service only when config has changed
   become: true
   ansible.builtin.service:
     name: lighttpd
     state: restarted
-  when: pihole.changed
+  when: pihole_conf.changed
