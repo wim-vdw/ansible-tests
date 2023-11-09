@@ -20,6 +20,7 @@
       echo "{{ group.name }} => Managed by: {{ group['tags']['managed-by'] | default('None') }}"
     {% endfor %}
   when: rg.resourcegroups[0] is defined
+  changed_when: false
   register: result
 
 - name: Display resource group results

@@ -3,6 +3,7 @@
 
 - name: Get OS uptime
   ansible.builtin.shell: uptime
+  changed_when: false
   register: result
 
 - name: Display OS data

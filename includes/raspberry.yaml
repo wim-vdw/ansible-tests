@@ -10,6 +10,7 @@
 
 - name: Get system information
   ansible.builtin.shell: uname -a
+  changed_when: false
   register: system_info
 
 - name: Save result to a file
