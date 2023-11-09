@@ -1,3 +1,9 @@
-- name: Mac OS
+- name: Update homebrew and upgrade all packages
+  community.general.homebrew:
+    update_homebrew : true
+    upgrade_all: true
+  register: brew_result
+
+- name: Debug homebrew results
   ansible.builtin.debug:
-    var: ansible_facts['os_family']
+    var: brew_result
