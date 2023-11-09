@@ -17,9 +17,16 @@
     groups: nordvpn
     append: yes
 
+- name: NordVPN - Get current settings
+  ansible.builtin.command: nordvpn settings
+  register: nordvpn_settings
+  changed_when: false
+
 - name: NordVPN - Add rules to allow ports
   ansible.builtin.command: nordvpn whitelist add port {{ item }}
   loop: "{{ allowed_ports }}"
+  when: "'{{ item }} (UDP|TCP)' not in nordvpn_settings.stdout"
 
 - name: NordVPN - Add a rule to allow subnet {{ home_subnet }}
   ansible.builtin.command: nordvpn whitelist add subnet {{ home_subnet }}
+  when: "'{{ home_subnet }}' not in nordvpn_settings.stdout"
