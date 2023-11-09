@@ -1,5 +1,7 @@
 ---
 - name: Test roles
+  vars:
+    var_hosts: "localhost"
   hosts: "{{ var_hosts }}"
 
   roles:
