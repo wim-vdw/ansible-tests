@@ -26,7 +26,9 @@
   ansible.builtin.command: nordvpn whitelist add port {{ item }}
   loop: "{{ raspberry_allowed_ports }}"
   when: item ~ ' (UDP|TCP)' not in nordvpn_settings.stdout
+  changed_when: true
 
 - name: NordVPN - Add a rule to allow subnet {{ home_subnet }}
   ansible.builtin.command: nordvpn whitelist add subnet {{ home_subnet }}
   when: raspberry_home_subnet not in nordvpn_settings.stdout
+  changed_when: true
