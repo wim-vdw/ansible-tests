@@ -10,4 +10,10 @@
     regexp: '^server.port'
     line: 'server.port                 = 1234'
   notify:
-    - Pihole - Restart lighttpd
+    - "restart lighttpd"
+
+- name: Pi-hole - Ensure lighttpd is running
+  become: true
+  ansible.builtin.service:
+    name: lighttpd
+    state: started

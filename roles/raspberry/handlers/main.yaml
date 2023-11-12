@@ -3,3 +3,4 @@
   ansible.builtin.service:
     name: lighttpd
     state: restarted
+  listen: "restart lighttpd"
