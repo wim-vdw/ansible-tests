@@ -1,7 +1,7 @@
 - name: NordVPN - Install GPG key and APT repo
   become: true
   ansible.builtin.apt:
-    deb: "{{ nordvpn_deb_package }}"
+    deb: "{{ raspberry_nordvpn_deb_package }}"
     state: present
 
 - name: NordVPN - Install
@@ -15,7 +15,7 @@
   ansible.builtin.user:
     name: wim
     groups: nordvpn
-    append: yes
+    append: true
 
 - name: NordVPN - Get current settings
   ansible.builtin.command: nordvpn settings
@@ -24,9 +24,9 @@
 
 - name: NordVPN - Add rules to allow ports
   ansible.builtin.command: nordvpn whitelist add port {{ item }}
-  loop: "{{ allowed_ports }}"
+  loop: "{{ raspberry_allowed_ports }}"
   when: item ~ ' (UDP|TCP)' not in nordvpn_settings.stdout
 
 - name: NordVPN - Add a rule to allow subnet {{ home_subnet }}
   ansible.builtin.command: nordvpn whitelist add subnet {{ home_subnet }}
-  when: home_subnet not in nordvpn_settings.stdout
+  when: raspberry_home_subnet not in nordvpn_settings.stdout

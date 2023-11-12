@@ -1,6 +1,6 @@
-nordvpn_deb_package: https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
-home_subnet: 192.168.0.0/24
-allowed_ports:
+raspberry_nordvpn_deb_package: https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+raspberry_home_subnet: 192.168.0.0/24
+raspberry_allowed_ports:
   - 22
   - 80
   - 443
