@@ -1,0 +1,5 @@
+- name: Pihole - Restart lighttpd
+  become: true
+  ansible.builtin.service:
+    name: lighttpd
+    state: restarted

@@ -9,11 +9,5 @@
     path: /etc/lighttpd/lighttpd.conf
     regexp: '^server.port'
     line: 'server.port                 = 1234'
-  register: pihole_conf
-
-- name: Pihole - Restart service only when config has changed
-  become: true
-  ansible.builtin.service:
-    name: lighttpd
-    state: restarted
-  when: pihole_conf.changed
+  notify:
+    - Pihole - Restart lighttpd
