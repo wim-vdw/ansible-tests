@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Install Ansible
+        run: pip install ansible
+
       - name: Install Ansible Lint
         run: pip install ansible-lint
 
