@@ -10,6 +10,7 @@ on:
         description: 'Playbook name'
         required: true
         type: string
+        default: 'playbook-test-roles.yaml'
 
 jobs:
   Ansible-lint:
