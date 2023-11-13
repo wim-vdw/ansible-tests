@@ -1,7 +1,7 @@
 - name: Get facts for one resource group
-  azure_rm_resourcegroup_info:
+  azure.azcollection.azure_rm_resourcegroup_info:
     name: rg-test05
-    list_resources: no
+    list_resources: false
   register: rg
 
 - name: Display resource group info
@@ -10,8 +10,8 @@
   when: rg.resourcegroups[0] is defined
 
 - name: Get info for all resource groups
-  azure_rm_resourcegroup_info:
-    list_resources: no
+  azure.azcollection.azure_rm_resourcegroup_info:
+    list_resources: false
   register: rg
 
 - name: Echo resource groups

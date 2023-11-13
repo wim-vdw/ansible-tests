@@ -2,14 +2,14 @@
   ansible.builtin.copy:
     src: ./playbook-test-blocks-and-includes.yaml
     dest: /home/wim/inventory.yaml
-  become: true
+    mode: '0600'
 
 - name: Display Python version
   ansible.builtin.debug:
     var: ansible_facts['python_version']
 
 - name: Get system information
-  ansible.builtin.shell: uname -a
+  ansible.builtin.command: uname -a
   changed_when: false
   register: system_info
 
@@ -19,6 +19,7 @@
       System information: {{ system_info.stdout }}
       Python version: {{ ansible_facts['python_version'] }}
     dest: "/home/wim/system_info.txt"
+    mode: '0600'
   register: result
 
 - name: Debug file
