@@ -1,2 +1,11 @@
 - name: Ping
   ansible.builtin.ping:
+
+- name: Get system info
+  ansible.builtin.command: uname -a
+  register: output
+  changed_when: false
+
+- name: Display system info
+  ansible.builtin.debug:
+    var: output.stdout
