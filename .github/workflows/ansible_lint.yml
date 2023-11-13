@@ -1,9 +1,6 @@
 name: Ansible linting example
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       playbook:
@@ -30,5 +27,5 @@ jobs:
       - name: Install Ansible Lint
         run: pip install ansible-lint
 
-      - name: Ansible Lint input file
-        run: ansible-lint -p ${{ inputs.playbook }}
+      - name: Ansible Lint ${{ inputs.playbook }}
+        run: ansible-lint --offline -p ${{ inputs.playbook }}
