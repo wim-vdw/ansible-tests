@@ -18,6 +18,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: 3.11
+
+      - name: Install Ansible Lint
+        run: pip install ansible-lint
+
+      - name: Ansible Lint version
+        run: ansible-lint --version
     
       - name: Playbook name
         run: echo ${{ inputs.playbook }}
