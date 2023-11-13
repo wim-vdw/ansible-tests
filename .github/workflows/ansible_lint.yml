@@ -1,4 +1,4 @@
-name: Ansible linting validations
+name: Ansible linting example
 
 on:
   pull_request:
@@ -27,8 +27,5 @@ jobs:
       - name: Install Ansible Lint
         run: pip install ansible-lint
 
-      - name: Ansible Lint version
-        run: ansible-lint --version
-    
-      - name: Playbook name
-        run: echo ${{ inputs.playbook }}
+      - name: Ansible Lint input file
+        run: ansible-lint --offline -p ${{ inputs.playbook }}
