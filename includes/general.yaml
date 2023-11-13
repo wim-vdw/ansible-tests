@@ -2,7 +2,7 @@
   ansible.builtin.ping:
 
 - name: Get OS uptime
-  ansible.builtin.shell: uptime
+  ansible.builtin.command: uptime
   changed_when: false
   register: result
 
