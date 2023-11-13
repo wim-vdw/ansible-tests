@@ -1,0 +1,24 @@
+name: Ansible linting validations
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  Ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
