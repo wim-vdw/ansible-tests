@@ -1,9 +1,3 @@
-- name: Update cache if the last one is more than 3600 seconds ago
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
-
 - name: Remove useless packages from the cache
   become: true
   ansible.builtin.apt:
