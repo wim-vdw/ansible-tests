@@ -22,7 +22,7 @@
     mode: '0600'
   register: result
 
-- name: Debug file
+- name: Debug file (ansible.builtin.copy)
   ansible.builtin.debug:
     var: result
 
@@ -34,3 +34,8 @@
       This block of lines will always be present in the (existing) target file.
       Block will be surrounded by markers.
       Rest of the file can be maintained without triggering a change for this task.
+  register: result
+
+- name: Debug file (ansible.builtin.blockinfile)
+  ansible.builtin.debug:
+    var: result
