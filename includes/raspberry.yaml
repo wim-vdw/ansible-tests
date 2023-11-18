@@ -25,3 +25,12 @@
 - name: Debug file
   ansible.builtin.debug:
     var: result
+
+- name: Add specific block to a file
+  ansible.builtin.blockinfile:
+    path: /home/wim/system_info2.txt
+    marker: "### {mark} ANSIBLE MANAGED BLOCK ###"
+    block: |
+      This block of lines will always be present in the (existing) target file.
+      Block will be surrounded by markers.
+      Rest of the file can be maintained without triggering a change for this task.
