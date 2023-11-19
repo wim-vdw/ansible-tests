@@ -9,6 +9,7 @@
   ansible.builtin.apt:
     name: nordvpn
     state: present
+    update_cache: true
 
 - name: NordVPN - Add user wim to group nordvpn
   become: true
@@ -29,6 +30,6 @@
   changed_when: true
 
 - name: NordVPN - Add a rule to allow subnet {{ home_subnet }}
-  ansible.builtin.command: nordvpn whitelist add subnet {{ home_subnet }}
+  ansible.builtin.command: nordvpn whitelist add subnet {{ raspberry_home_subnet }}
   when: raspberry_home_subnet not in nordvpn_settings.stdout
   changed_when: true
