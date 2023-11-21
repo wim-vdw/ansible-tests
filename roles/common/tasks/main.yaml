@@ -9,3 +9,7 @@
 - name: Display system info
   ansible.builtin.debug:
     var: output.stdout
+
+- name: Display inventory variable 'env'
+  ansible.builtin.debug:
+    var: env
