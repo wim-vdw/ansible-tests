@@ -3,3 +3,4 @@ home:
     raspberry:
       ansible_port: 22
       ansible_host: 192.168.0.4
+      env: Development
