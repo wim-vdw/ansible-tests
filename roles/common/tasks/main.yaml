@@ -29,5 +29,5 @@
 - name: Check if operating system is different from RedHat
   ansible.builtin.assert:
     that:
-      - ansible_os_family == 'RedHat'
+      - ansible_os_family != 'RedHat'
     msg: Operating system can not be RedHat
