@@ -1,0 +1,24 @@
+---
+- name: Get Kubernetes data
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Get a list of all pods from any namespace
+      kubernetes.core.k8s_info:
+        kind: Pod
+      register: pod_list
+
+    - name: Echo pods
+      ansible.builtin.shell: |
+        {% for pod in pod_list.resources %}
+          echo "Created: {{ pod.metadata.creationTimestamp }} => {{ pod.metadata.name }}"
+        {% endfor %}
+      when: pod_list.resources[0] is defined
+      changed_when: false
+      register: result
+
+    - name: Display pod results
+      ansible.builtin.debug:
+        var: result.stdout_lines
+      when: result.stdout_lines is defined
