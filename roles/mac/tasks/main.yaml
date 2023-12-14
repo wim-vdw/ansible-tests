@@ -1,7 +1,7 @@
 - name: Update homebrew and upgrade all packages
   community.general.homebrew:
     update_homebrew: true
-    upgrade_all: true
+    upgrade_all: false
   register: brew_result
 
 - name: Debug homebrew results
