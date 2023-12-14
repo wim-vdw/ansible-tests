@@ -28,4 +28,4 @@ jobs:
         run: pip install ansible-lint
 
       - name: Ansible Lint ${{ inputs.playbook }}
-        run: ansible-lint --offline -p ${{ inputs.playbook }}
+        run: ansible-lint --offline -p ${{ inputs.playbook }} -v
