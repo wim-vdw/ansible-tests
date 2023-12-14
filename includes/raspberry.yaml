@@ -28,7 +28,7 @@
 
 - name: Add specific block to a file
   ansible.builtin.blockinfile:
-    path: /home/wim/system_info2.txt
+    path: /home/wim/system_info.txt
     marker: "### {mark} ANSIBLE MANAGED BLOCK ###"
     block: |
       This block of lines will always be present in the (existing) target file.
