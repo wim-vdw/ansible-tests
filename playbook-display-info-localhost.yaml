@@ -1,0 +1,26 @@
+---
+- name: Display System Information on localhost
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  tasks:
+    - name: Show Hostname
+      debug:
+        msg: "Hostname is {{ ansible_hostname }}"
+
+    - name: Show Uptime
+      command: uptime
+      register: uptime_output
+
+    - name: Display Uptime
+      debug:
+        msg: "{{ uptime_output.stdout }}"
+
+    - name: Show Disk Usage
+      command: df -h /
+      register: disk_usage
+
+    - name: Display Disk Usage
+      debug:
+        msg: "{{ disk_usage.stdout }}"
