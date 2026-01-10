@@ -7,9 +7,9 @@
   tasks:
     - name: Show Hostname
       ansible.builtin.debug:
-        msg: "Hostname is {{ ansible_hostname }}"
+        msg: "Hostname is {{ ansible_facts['hostname'] }}"
 
-    - name: Show Uptime
+    - name: Get Uptime
       ansible.builtin.command: uptime
       changed_when: false
       register: uptime_output
@@ -18,7 +18,7 @@
       ansible.builtin.debug:
         msg: "{{ uptime_output.stdout }}"
 
-    - name: Show Disk Usage
+    - name: Get Disk Usage
       ansible.builtin.command: df -h /
       changed_when: false
       register: disk_usage
