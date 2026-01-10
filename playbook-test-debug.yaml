@@ -3,7 +3,7 @@
   vars:
     var_hosts: "localhost"
   hosts: "{{ var_hosts }}"
-  gather_facts: yes
+  gather_facts: true
 
   tasks:
     - name: Get details about host (Ansible facts, undefined variables, ...)
