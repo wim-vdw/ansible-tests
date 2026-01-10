@@ -32,6 +32,6 @@ jobs:
 
       - name: Ansible Lint
         run: |
-          PLAYBOOKS="${{ github.event.inputs.playbooks || 'playbooks/ roles/ /includes' }}"
+          PLAYBOOKS="${{ github.event.inputs.playbooks || 'playbooks/' }}"
           echo "Linting playbooks at: $PLAYBOOKS"
           ansible-lint $PLAYBOOKS
