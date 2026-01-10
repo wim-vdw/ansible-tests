@@ -11,7 +11,7 @@
         msg:
           - "ansible_facts.os_family      : {{ ansible_facts.os_family }}"
           - "ansible_facts.distribution   : {{ ansible_facts.distribution }}"
-          - "var_does_not_exist           : {{ var_does_not_exist | default ('Defaulted to this value') }}"
+          - "var_does_not_exist           : {{ var_does_not_exist | default('Defaulted to this value') }}"
 
     - name: Get OS uptime
       ansible.builtin.command: uptime
