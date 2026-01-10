@@ -2,6 +2,7 @@
 - name: Get Kubernetes data
   hosts: localhost
   connection: local
+  gather_facts: false
 
   tasks:
     - name: Get a list of all pods from any namespace
