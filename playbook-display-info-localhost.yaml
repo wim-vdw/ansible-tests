@@ -2,7 +2,7 @@
 - name: Display System Information on localhost
   hosts: localhost
   connection: local
-  gather_facts: yes
+  gather_facts: true
 
   tasks:
     - name: Show Hostname
