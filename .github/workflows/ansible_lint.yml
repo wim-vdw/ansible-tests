@@ -1,6 +1,9 @@
-name: Ansible linting example
+name: Ansible linting
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       playbooks:
@@ -27,5 +30,8 @@ jobs:
       - name: Install Ansible Lint
         run: pip install ansible-lint
 
-      - name: Ansible Lint ${{ inputs.playbooks }}
-        run: ansible-lint ${{ inputs.playbooks }}
+      - name: Ansible Lint
+        run: |
+          PLAYBOOKS="${{ github.event.inputs.playbooks || 'playbooks/ roles/ /includes' }}"
+          echo "Linting playbooks at: $PLAYBOOKS"
+          ansible-lint $PLAYBOOKS
