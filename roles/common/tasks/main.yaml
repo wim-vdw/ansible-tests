@@ -3,12 +3,12 @@
 
 - name: Get system info
   ansible.builtin.command: uname -a
-  register: output
+  register: common_output
   changed_when: false
 
 - name: Display system info
   ansible.builtin.debug:
-    var: output.stdout
+    var: common_output.stdout
 
 - name: Display inventory variable 'env'
   ansible.builtin.debug:

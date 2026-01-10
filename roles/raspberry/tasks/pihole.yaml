@@ -1,7 +1,7 @@
 - name: Pi-hole - Upgrade
   ansible.builtin.command: pihole -up
-  register: pihole_upgrade
-  changed_when: "'Everything is up to date!' not in pihole_upgrade.stdout"
+  register: raspberry_pihole_upgrade
+  changed_when: "'Everything is up to date!' not in raspberry_pihole_upgrade.stdout"
 
 - name: Pi-hole - Update configuration
   become: true

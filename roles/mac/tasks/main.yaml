@@ -2,8 +2,8 @@
   community.general.homebrew:
     update_homebrew: true
     upgrade_all: false
-  register: brew_result
+  register: mac_brew_result
 
 - name: Debug homebrew results
   ansible.builtin.debug:
-    var: brew_result
+    var: mac_brew_result
