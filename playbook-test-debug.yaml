@@ -1,5 +1,7 @@
 ---
 - name: Read-only tests on variable hosts to get information
+  vars:
+    var_hosts: "localhost"
   hosts: "{{ var_hosts }}"
   gather_facts: yes
 
